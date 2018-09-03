@@ -1,6 +1,6 @@
 #include <Wire.h>
 TwoWire Wire2 = TwoWire(1);
-byte error, address;
+byte err, address;
 int nDevices;
 
 void setup()
@@ -20,9 +20,9 @@ void loop()
   for(address = 1; address < 127; address++ ) 
   {
     Wire.beginTransmission(address);
-    error = Wire.endTransmission();
+    err = Wire.endTransmission();
 
-    if (error == 0)
+    if (err == 0)
     {
       Serial.print("Wire: I2C device found at address 0x");
       if (address<16) 
@@ -32,7 +32,7 @@ void loop()
 
       nDevices++;
     }
-    else if (error==4) 
+    else if (err==4) 
     {
       Serial.print("Wire: Unknown error at address 0x");
       if (address<16) 
@@ -49,9 +49,9 @@ void loop()
   for(address = 1; address < 127; address++ ) 
   {
     Wire2.beginTransmission(address);
-    error = Wire2.endTransmission();
+    err = Wire2.endTransmission();
 
-    if (error == 0)
+    if (err == 0)
     {
       Serial.print("Wire2: I2C device found at address 0x");
       if (address<16) 
@@ -61,7 +61,7 @@ void loop()
 
       nDevices++;
     }
-    else if (error==4) 
+    else if (err==4) 
     {
       Serial.print("Wire2: Unknown error at address 0x");
       if (address<16) 
